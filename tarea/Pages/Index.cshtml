@@ -1,10 +1,41 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Página de Notas";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Gestión de Notas</h1>
+    <p>Bienvenido a la aplicación de gestión de notas. Aquí podrás agregar y ver tus calificaciones.</p>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="subject">Materia</label>
+            <input type="text" class="form-control" id="subject" name="Subject" placeholder="Ingrese la materia" required />
+        </div>
+        <div class="form-group">
+            <label for="grade">Nota</label>
+            <input type="number" class="form-control" id="grade" name="Grade" placeholder="Ingrese la calificación" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar Nota</button>
+    </form>
+
+    <h2 class="mt-4">Notas Registradas</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Materia</th>
+                <th>Nota</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var note in Model.Notes)
+            {
+                <tr>
+                    <td>@note.Subject</td>
+                    <td>@note.Grade</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
